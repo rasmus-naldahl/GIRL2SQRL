@@ -29,14 +29,9 @@ function walk(node)
 
 function handleText(textNode) 
 {
-	var v = textNode.nodeValue;
-
-	v = v.replace(/\bGirl\b/g, "Squirrel");
-	v = v.replace(/\bgirl\b/g, "squirrel");
-	v = v.replace(/\bGirls\b/g, "Squirrels");
-	v = v.replace(/\bgirls\b/g, "squirrels");
-	
-	textNode.nodeValue = v;
+	textNode.nodeValue = textNode.nodeValue.replace(/\b(g|G)irl(s?)\b/g, function(x, a, b) {
+  		return `${a==='G' ? 'S' : 's'}quirrel${b}`
+  	});
 }
 
 
